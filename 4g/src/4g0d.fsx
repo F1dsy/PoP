@@ -35,6 +35,6 @@ let rec routes (src: pos) (tg: pos) : pos list list =
             let distances = List.map (fun e -> dist e tg) c
             let max = List.max distances
             List.filter (fun e -> dist e tg <> max) c
-        |> List.map (fun (elem: pos) -> routes elem tg)
+        |> List.map (fun (cand: pos) -> routes cand tg)
         |> List.collect id
-        |> List.map (fun (elem: pos list) -> src :: elem)
+        |> List.map (fun (lst: pos list) -> src :: lst)
