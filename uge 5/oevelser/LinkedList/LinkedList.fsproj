@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="intLinkedList.fsi" />
+    <Compile Include="intLinkedList.fs" />
+    <Compile Include="testLinkedList.fsx" />
+  </ItemGroup>
+
+</Project>
