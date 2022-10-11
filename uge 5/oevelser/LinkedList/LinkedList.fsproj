@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Include="intLinkedList.fsi" />
     <Compile Include="intLinkedList.fs" />
+    <Compile Include="linkedList.fsi" />
+    <Compile Include="linkedList.fs" />
     <Compile Include="testLinkedList.fsx" />
   </ItemGroup>
 
