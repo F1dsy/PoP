@@ -1,4 +1,4 @@
-module intQueue
+module IntQueue
 
 type queue = int list
 
