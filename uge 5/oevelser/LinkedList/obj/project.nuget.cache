@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mio/xM7LOK808UUF6PCy0caEkuGhqHHMqX+9VHiRrQ3tUbVeBNbmExLdZWK3b3YOZK+l5NzdsZ+4fRqpkRsXhg==",
+  "dgSpecHash": "Y6Xvlla1gYuSusEE6it+SWs6mWO+iwfwKQMfBPKPLzuBodFF78UKFA/tRFCi52zIriy1fsTuG43g8hU6W4+M8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\LinkedList\\LinkedList.fsproj",
+  "projectFilePath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\oevelser\\LinkedList\\LinkedList.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alex\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
   ],

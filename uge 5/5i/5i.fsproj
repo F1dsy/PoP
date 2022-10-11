@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Include="intQueue.fsi" />
     <Compile Include="intQueue.fs" />
+    <Compile Include="safeIntQueue.fsi"/>
+    <Compile Include="safeIntQueue.fs"/>
     <Compile Include="testQueues.fs" />
   </ItemGroup>
 </Project>

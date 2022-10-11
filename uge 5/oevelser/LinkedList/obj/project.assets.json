@@ -122,11 +122,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\LinkedList\\LinkedList.fsproj",
+      "projectUniqueName": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\oevelser\\LinkedList\\LinkedList.fsproj",
       "projectName": "LinkedList",
-      "projectPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\LinkedList\\LinkedList.fsproj",
+      "projectPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\oevelser\\LinkedList\\LinkedList.fsproj",
       "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\LinkedList\\obj\\",
+      "outputPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\oevelser\\LinkedList\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config"
