@@ -9,6 +9,8 @@
     <Compile Include="intQueue.fs" />
     <Compile Include="safeIntQueue.fsi"/>
     <Compile Include="safeIntQueue.fs"/>
+    <Compile Include="queue.fsi"/>
+    <Compile Include="queue.fs"/>
     <Compile Include="testQueues.fs" />
   </ItemGroup>
 </Project>

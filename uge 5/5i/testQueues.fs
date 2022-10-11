@@ -68,6 +68,15 @@ let safeIntQueueTests () =
     // Return the test results as a boolean
     allTestResults
 
+let genericQueueTests () =
+    let qi = Queue.emptyQueue<int>
+    let qf = Queue.emptyQueue<float>
+    let qs = Queue.emptyQueue<string>
+
+    let allTestResults: bool = true
+    allTestResults
+
+
 
 // Run the IntQueue tests
 let intQueueTestResults = intQueueTests ()
