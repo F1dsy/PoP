@@ -6,12 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Library.fs" />
-    <Compile Include="Program.fsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="DIKU.Canvas" Version="1.0.1" />
+    <Compile Include="Program.fsi" />
+    <Compile Include="Program.fs" />
+    <Compile Include="App.fsx" />
   </ItemGroup>
 
 </Project>

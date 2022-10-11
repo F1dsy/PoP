@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\app\\app.fsproj": {}
+    "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\5i\\5i.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\app\\app.fsproj": {
+    "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\5i\\5i.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\app\\app.fsproj",
-        "projectName": "app",
-        "projectPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\app\\app.fsproj",
+        "projectUniqueName": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\5i\\5i.fsproj",
+        "projectName": "5i",
+        "projectPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\5i\\5i.fsproj",
         "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\øvelser\\app\\obj\\",
+        "outputPath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 5\\5i\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -34,10 +34,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "DIKU.Canvas": {
-              "target": "Package",
-              "version": "[1.0.1, )"
-            },
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
