@@ -16,10 +16,11 @@ let add (num: int) (list: intLinkedList) : intLinkedList = Cons(num, list)
 
 let head (list: intLinkedList) : int =
     match list with
-    | Nil -> 0
     | Cons (a, b) -> a
 
 let tail (list: intLinkedList) : intLinkedList =
     match list with
     | Nil -> Nil
     | Cons (a: int, b: intLinkedList) -> b
+
+// List.fold
