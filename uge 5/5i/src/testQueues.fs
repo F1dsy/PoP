@@ -1,4 +1,7 @@
-﻿let intQueueTests () =
+﻿/// <summary>Test the intQueue</summary>
+/// <returns>true if all tests are passed</returns>
+let intQueueTests () =
+
     let q0 = IntQueue.emptyQueue
     let emptyTestResult = IntQueue.isEmpty q0
     printfn "An empty queue is empty: %A" emptyTestResult
@@ -29,6 +32,8 @@
     allTestResults
 
 
+/// <summary>Test the safeIntQueue</summary>
+/// <returns>true if all tests are passed</returns>
 let safeIntQueueTests () =
     let q0 = SafeIntQueue.emptyQueue
     let emptyTestResult = SafeIntQueue.isEmpty q0
@@ -68,12 +73,28 @@ let safeIntQueueTests () =
     // Return the test results as a boolean
     allTestResults
 
+/// <summary>Test the generic Queue</summary>
+/// <returns>true if all tests are passed</returns>
 let genericQueueTests () =
     let qi = Queue.emptyQueue<int>
     let qf = Queue.emptyQueue<float>
     let qs = Queue.emptyQueue<string>
 
-    let allTestResults: bool = true
+    let qi = Queue.enqueue 2 qi
+    let qf = Queue.enqueue 2.0 qf
+    let qs = Queue.enqueue "2" qs
+
+    let (ai, b) = Queue.dequeue qi
+    let (af, b) = Queue.dequeue qf
+    let (astr, b) = Queue.dequeue qs
+
+    let allTestResults: bool =
+        (ai = Some(2))
+        && (af = Some(2.0))
+        && (astr = Some("2"))
+
+
+    printfn "All generic queue tests passed: %A" allTestResults
     allTestResults
 
 
@@ -81,3 +102,4 @@ let genericQueueTests () =
 // Run the IntQueue tests
 let intQueueTestResults = intQueueTests ()
 let safeIntQueueTestResults = safeIntQueueTests ()
+let genericQueueTestResults = genericQueueTests ()
