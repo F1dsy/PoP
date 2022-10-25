@@ -1,0 +1,4 @@
+c:\Users\Alex\Documents\University\PoP\uge 6\6g0App\obj\Debug\net6.0\6g0App.fsproj.AssemblyReference.cache
+c:\Users\Alex\Documents\University\PoP\uge 6\6g0App\obj\Debug\net6.0\6g0App.AssemblyInfoInputs.cache
+c:\Users\Alex\Documents\University\PoP\uge 6\6g0App\obj\Debug\net6.0\6g0App.AssemblyInfo.fs
+c:\Users\Alex\Documents\University\PoP\uge 6\6g0App\obj\Debug\net6.0\6g0App.fsproj.CoreCompileInputs.cache

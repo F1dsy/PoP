@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "DySBxP8/MQsw3GxQdgnehFKIG0Uph4Sp5GprcpB8cGAGVkP/5Ouupw+hzPJGJeSGyAwZqe0TWKW/+nbonBd2sA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 6\\6g0App\\6g0App.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alex\\.nuget\\packages\\diku.canvas\\1.0.1\\diku.canvas.1.0.1.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\stbimagesharp\\2.27.11\\stbimagesharp.2.27.11.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\stbimagewritesharp\\1.16.7\\stbimagewritesharp.1.16.7.nupkg.sha512"
+  ],
+  "logs": []
+}
