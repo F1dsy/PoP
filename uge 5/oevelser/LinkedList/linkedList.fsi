@@ -11,4 +11,4 @@ val length: linkedList<'a> -> int
 val add: 'a -> linkedList<'a> -> linkedList<'a>
 
 val fold: ('s -> 'a -> 's) -> 's -> linkedList<'a> -> 's
-val foldBack: ('a -> 's -> 's) -> list<'a> -> 's -> 's
+// val foldBack: ('a -> 's -> 's) -> list<'a> -> 's -> 's
