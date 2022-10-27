@@ -57,55 +57,9 @@ let flipUD (s: state) : state =
 let transpose (s: state) : state =
     List.map (fun (v, (x, y)) -> (v, (y, x))) s
 
-// let shiftUp (s: state) : state =
-//     let mutable ns: state = []
-
-//     for c = 0 to 2 do
-
-//         let mutable fltd = filter c s
-//         printfn "%A" (filter c s)
-//         fltd <- List.sortWith (fun (v, (x, y)) (v1, (x1, y1)) -> compare x x1) fltd
-//         printfn "%A" (filter c s)
-
-//         match fltd.Length with
-
-//         | 1 ->
-//             printfn "Only one"
-//             let (v, (x, y)) = fltd.Head
-//             fltd <- [ (v, (0, y)) ]
-//         | 2 ->
-//             let (v, (x, y)) = fltd.Head
-//             let (v1, (x1, y1)) = fltd[1]
-
-//             if v = v1 then
-//                 fltd <- [ (nextColor v, (x, y)) ]
-
-//         | 3 ->
-
-//             let (v, (x, y)) = fltd.Head
-//             let (v1, (x1, y1)) = fltd[1]
-//             let (v2, (x2, y2)) = fltd[2]
-
-//             if v1 = v2 then
-//                 fltd <- [ fltd.Head; (nextColor v1, (x1, y1)) ]
-
-//             if v1 = v then
-//                 fltd <- [ (nextColor v, (x, y)); fltd[2] ]
-
-//         | _ -> ()
-
-//         if fltd.Length = 2 then
-//             let (v1, (x1, y1)) = fltd[1]
-
-//             if x1 = 2 then
-//                 fltd <- [ fltd.Head; (v1, (1, y1)) ]
-
-//         ns <- ns @ fltd
-
-
-//     printfn "Now State: %A" ns
-//     ns
-
+/// <summary>Tilts all pieces on the board s to the left</summary>
+/// <param name="s">state</param>
+/// <returns>new state</returns>
 let shiftUp (s: state) : state =
     let mutable ns: state = []
 
@@ -128,22 +82,22 @@ let shiftUp (s: state) : state =
                 lst
 
         let merge lst =
+
             List.choose
                 (fun (v, (x, y)) ->
-                    if (find lst (x + 1) && findv lst v (x + 1)) then
+                    if (find lst (x + 1)
+                        && findv lst v (x + 1)
+                        && not (findv lst v (x - 1))) then
                         Some((nextColor v, (x, y)))
-                    elif (find lst (x - 1) && findv lst v (x - 1)) then
+                    elif (find lst (x - 1)
+                          && findv lst v (x - 1)
+                          && not (findv lst v (x - 2))) then
                         None
                     else
                         Some((v, (x, y))))
                 lst
 
         ns <- ns @ (compress >> merge >> compress) fltd
-
-
-    // compress
-    // merge
-    // compress
 
     ns
 

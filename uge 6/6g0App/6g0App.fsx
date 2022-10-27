@@ -44,7 +44,7 @@ let react (s: state) (k: Canvas.key) : state option =
         reacted
     else
         addRandom Red reacted.Value
-// reacted
+
 
 
 
@@ -54,6 +54,6 @@ let h = w
 let s: piece list =
     [ (Red, (0, 0))
       (Red, (2, 0))
-      (Blue, (1, 1)) ]
+      (Red, (1, 0)) ]
 
 Canvas.runApp "app" w h draw react s
