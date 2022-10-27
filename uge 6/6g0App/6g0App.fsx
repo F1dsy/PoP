@@ -1,7 +1,13 @@
+#r "nuget: DIKU.Canvas, 1.0.1"
+#load "6g0Lib.fs"
+
 open Lib
 
-// draw: w: int -> h: int -> s: state -> canvas
-
+/// <summary>Draws board from current state</summary>
+/// <param name="w">width of window</param>
+/// <param name="h">height of window</param>
+/// <param name="s">state</param>
+/// <returns>canvas</returns>
 let draw (w: int) (h: int) (s: state) : Canvas.canvas =
     let boardsize = 3
     let dw = w / boardsize
@@ -13,7 +19,10 @@ let draw (w: int) (h: int) (s: state) : Canvas.canvas =
 
     c
 
-// react: s: state -> k: key -> state option
+/// <summary>Reacts to user input</summary>
+/// <param name="s">state</param>
+/// <param name="k">pressed key</param>
+/// <returns>Some(state) if user pressed valid key, None if non-valid key is pressed</returns>
 let react (s: state) (k: Canvas.key) : state option =
     match Canvas.getKey k with
     | Canvas.UpArrow -> Some(shiftUp s)
@@ -36,8 +45,8 @@ let w = 600
 let h = w
 
 let s: piece list =
-    [ (Red, (1, 0))
-      (Blue, (0, 0))
-      (Yellow, (1, 1)) ]
+    [ (Red, (0, 0))
+      (Red, (1, 0))
+      (Blue, (1, 1)) ]
 
 Canvas.runApp "app" w h draw react s

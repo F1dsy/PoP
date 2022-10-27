@@ -36,22 +36,22 @@ val nextColor: c: value -> value
 // val it: state = []
 val filter: k: int -> s: state -> state
 
-// tilt all pieces on the board s to the left ( towards zero on the first coordinate ), e.g. ,
-// > shiftUp [( Blue , (1 , 0)); (Red , (2 , 0)); (Black , (1 ,1))];;
-// val it: state = [( Blue , (0 , 0)); (Red , (1 , 0)); (Black , (0 ,1))]
-val shiftUp: s: state -> state
-
 // flip the board s such that all pieces position change as
 // (i,j) -> (2 -i,j), e.g.
 // > flipUD [( Blue , (1 , 0)); (Red , (2 , 0))];;
 // val it: state = [( Blue , (1 , 0)); (Red , (0 , 0))]
 val flipUD: s: state -> state
 
-// transpose the pieces on the board s such all piece positiosn
+// transpose the pieces on the board s such all piece positions
 // change as (i,j) -> (j,i), e.g. ,
 // > transpose [( Blue , (1 , 0)); (Red , (2 , 0))];;
 // val it: state = [( Blue , (0 , 1)); (Red , (0 , 2))]
 val transpose: s: state -> state
+
+// tilt all pieces on the board s to the left ( towards zero on the first coordinate ), e.g. ,
+// > shiftUp [( Blue , (1 , 0)); (Red , (2 , 0)); (Black , (1 ,1))];;
+// val it: state = [( Blue , (0 , 0)); (Red , (1 , 0)); (Black , (0 ,1))]
+val shiftUp: s: state -> state
 
 // find the list of empty positions on the board s, e.g. ,
 // > empty [( Blue , (1 , 0)); (Red , (2 , 0))];;
