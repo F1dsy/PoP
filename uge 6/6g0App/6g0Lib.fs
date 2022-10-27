@@ -109,7 +109,38 @@ let transpose (s: state) : state =
 let shiftUp (s: state) : state =
     let mutable ns: state = []
 
-    // for c = 0 to 2 do
+    for c = 0 to 2 do
+        let fltd = filter c s
+
+        let find lst x =
+            List.exists (fun (v1, (x1, y1)) -> x1 = (x)) lst
+
+        let findv lst v x =
+            List.exists (fun (v1, (x1, y1)) -> v1 = v && x1 = x) lst
+
+        let compress lst =
+            List.map
+                (fun (v, (x, y)) ->
+                    if (find lst (x - 1)) || x = 0 then
+                        (v, (x, y))
+                    else
+                        (v, (x - 1, y)))
+                lst
+
+        let merge lst =
+            List.choose
+                (fun (v, (x, y)) ->
+                    if (find lst (x + 1) && findv lst v (x + 1)) then
+                        Some((nextColor v, (x, y)))
+                    elif (find lst (x - 1) && findv lst v (x - 1)) then
+                        None
+                    else
+                        Some((v, (x, y))))
+                lst
+
+        ns <- ns @ (compress >> merge >> compress) fltd
+
+
     // compress
     // merge
     // compress

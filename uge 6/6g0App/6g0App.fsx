@@ -24,20 +24,27 @@ let draw (w: int) (h: int) (s: state) : Canvas.canvas =
 /// <param name="k">pressed key</param>
 /// <returns>Some(state) if user pressed valid key, None if non-valid key is pressed</returns>
 let react (s: state) (k: Canvas.key) : state option =
-    match Canvas.getKey k with
-    | Canvas.UpArrow -> Some(shiftUp s)
-    | Canvas.DownArrow -> Some((flipUD >> shiftUp >> flipUD) s)
-    | Canvas.LeftArrow -> Some((transpose >> shiftUp >> transpose) s)
-    | Canvas.RightArrow ->
-        Some(
-            (transpose
-             >> flipUD
-             >> shiftUp
-             >> flipUD
-             >> transpose)
-                s
-        )
-    | _ -> None
+    let reacted =
+        match Canvas.getKey k with
+        | Canvas.UpArrow -> Some(shiftUp s)
+        | Canvas.DownArrow -> Some((flipUD >> shiftUp >> flipUD) s)
+        | Canvas.LeftArrow -> Some((transpose >> shiftUp >> transpose) s)
+        | Canvas.RightArrow ->
+            Some(
+                (transpose
+                 >> flipUD
+                 >> shiftUp
+                 >> flipUD
+                 >> transpose)
+                    s
+            )
+        | _ -> None
+
+    if (reacted = None) then
+        reacted
+    else
+        addRandom Red reacted.Value
+// reacted
 
 
 
@@ -46,7 +53,7 @@ let h = w
 
 let s: piece list =
     [ (Red, (0, 0))
-      (Red, (1, 0))
+      (Red, (2, 0))
       (Blue, (1, 1)) ]
 
 Canvas.runApp "app" w h draw react s
