@@ -1,6 +1,6 @@
 module CatList
 
-open DiffList
+// open DiffList
 
 type 'a catlist =
     | Empty
@@ -16,7 +16,15 @@ let cons (elm: 'a) (xs: 'a catlist) : 'a catlist = Append(single elm, xs)
 
 let snoc (xs: 'a catlist) (elm: 'a) : 'a catlist = Append(xs, single elm)
 
+let fold (cf: ('a -> 'a -> 'a), (e: 'a)) (f: ('b -> 'a)) (xs: 'b catlist) : 'a =
+    let rec inner xs =
+        match xs with
+        | Empty -> e
+        | Single s -> f s
+        | Append (u, v) -> cf (inner u) (inner v)
 
+    inner xs
+    
 let rec length xs : int =
     match xs with
     | Empty -> 0
@@ -30,7 +38,7 @@ let rec sum (xs: int catlist) : int =
     | Append (ys, zs) -> sum ys + sum zs
 
 
-let fold (cf: ('a -> 'a -> 'a), (e: 'a)) (f: ('b -> 'a)) (xs: 'b catlist) : 'a = failwith "Not Implemented"
+
 
 let rec fromCatList (xs: 'a catlist) : 'a list =
     match xs with
@@ -42,14 +50,22 @@ let rec fromCatList (xs: 'a catlist) : 'a list =
 
 
 
-
-
 let rec toCatList (xs: 'a list) : 'a catlist =
     match xs with
     | [] -> Empty
     | elm :: lst -> Append(Single elm, toCatList lst)
 
-let item (i: int) (xs: 'a catlist) : 'a = failwith "Not Implemented"
+
+let toCatList' (xs: 'a list) : 'a catlist = List.foldBack cons xs nil
+
+
+let fromCatList' (xs: 'a catlist) : 'a list =
+    DiffList.fromDiffList (fold (DiffList.append, DiffList.nil) DiffList.single xs)
+
+
+
+let item (i: int) (xs: 'a catlist) : 'a = 
+
 
 let insert (i: int) (elm: 'a) (xs: 'a catlist) : 'a catlist = failwith "Not Implemented"
 
