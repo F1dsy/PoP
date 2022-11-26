@@ -24,7 +24,7 @@ let fold (cf: ('a -> 'a -> 'a), (e: 'a)) (f: ('b -> 'a)) (xs: 'b catlist) : 'a =
         | Append (u, v) -> cf (inner u) (inner v)
 
     inner xs
-    
+
 let rec length xs : int =
     match xs with
     | Empty -> 0
@@ -64,7 +64,7 @@ let fromCatList' (xs: 'a catlist) : 'a list =
 
 
 
-let item (i: int) (xs: 'a catlist) : 'a = 
+let item (i: int) (xs: 'a catlist) : 'a = failwith "Not"
 
 
 let insert (i: int) (elm: 'a) (xs: 'a catlist) : 'a catlist = failwith "Not Implemented"

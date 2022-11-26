@@ -1,27 +1,36 @@
 module CatStreaming
 
 open System.IO
-open System.IO.Compression.ZipFile
+
+
 // RECOMMENDED BUT OPTIONAL:
 //     Implement this function if you want to
 //     If you remove it, remember to remove it from CatStreaming.fsi as well
 let readBytes (count: int) (buffer: byte []) (fs: FileStream) : int =
     let readBytes = fs.Read(buffer, 0, count)
     readBytes
-
 // Replace with a proper implementation
 
 // RECOMMENDED BUT OPTIONAL:
 //     Implement this function if you want to
 //     If you remove it, remember to remove it from CatStreaming.fsi as well
-let writeBytes (count: int) (buffer: byte []) (fs: FileStream) : unit = fs.Write(buffer, 0, count) // Replace with a proper implementation
+let writeBytes (count: int) (buffer: byte []) (fs: FileStream) : unit =
+    printfn "Writing %d bytes to filestream" (Array.length buffer)
+    printfn "CanWrite: %A" fs.CanWrite
+    fs.Write(buffer, 0, count)
+    fs.Flush()
+// fs.Write buffer
+// Replace with a proper implementation
+
 
 // RECOMMENDED BUT OPTIONAL:
 //     Implement this function if you want to
 //     If you remove it, remember to remove it from CatStreaming.fsi as well
 let readAndWriteBytes (buffersize: int) (buffer: byte []) (ifs: FileStream) (ofs: FileStream) =
     let out = readBytes buffersize buffer ifs
+    printfn "%A" buffer
     writeBytes buffersize buffer ofs
+    out
 // Replace with a proper implementation
 
 // RECOMMENDED BUT OPTIONAL:
@@ -81,7 +90,7 @@ let catWithBufferSize (buffersize: int) (filenames: string []) : int =
         let infiles = filenames[.. len - 2]
         let outfile = filenames[len - 1]
         let outstream = openFileWrite outfile
-        outstream.Value.
+
         // for file in infiles do
         //     let instream =openFileRead file
         let streams = openFilesRead (Array.toList infiles)
@@ -102,9 +111,15 @@ let catWithBufferSize (buffersize: int) (filenames: string []) : int =
 
             exitStatus
         else
-            List.map
-                (fun stream -> 
-                    readAndWriteBytes buffersize [||] stream.Value outstream.Value)
+
+            // readAndWriteBytes buffersize (Array.zeroCreate buffersize) streams[0].Value outstream.Value
+
+            List.iter
+                (fun (stream: FileStream option) ->
+                    let mutable sll = 32
+
+                    while sll = buffersize do
+                        sll <- readAndWriteBytes buffersize (Array.zeroCreate buffersize) stream.Value outstream.Value)
                 streams
             |> ignore
 
@@ -128,5 +143,3 @@ let catWithBufferSize (buffersize: int) (filenames: string []) : int =
 
 // REQUIRED: Your implementation *must* include this function
 let cat: (string [] -> int) = catWithBufferSize 32
-
-let res = cat [| "fd" |]
