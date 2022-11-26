@@ -9,7 +9,7 @@
     <Compile Include="DiffList.fs" />   
     <Compile Include="CatList.fsi" />  
     <Compile Include="CatList.fs" />
-    <Compile Include="Program.fsx" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 module CatList
 
-// open DiffList
 
 type 'a catlist =
     | Empty
@@ -64,9 +63,42 @@ let fromCatList' (xs: 'a catlist) : 'a list =
 
 
 
-let item (i: int) (xs: 'a catlist) : 'a = failwith "Not"
+let item (i: int) (xs: 'a catlist) : 'a =
+    let rec k i' xs' =
+        match xs' with
+        | Empty -> failwith "Listen er tom"
+        | Single x when i' = 0 -> x
+        | Append (x, y) ->
+            if i' >= length (x) then
+                k (i' - length (x)) y
+            else
+                k i' x
+
+    k i xs
+
+let insert (i: int) (elm: 'a) (xs: 'a catlist) : 'a catlist =
+    let rec h i' xs' =
+        match xs' with
+        | Empty -> Single elm
+        | Single xs' -> Append(Single xs', Single elm)
+        | Append (x, y) ->
+            if i' >= length (x) then
+                Append(x, h (i' - length (x)) y)
+            else
+                Append(h i' x, y)
 
 
-let insert (i: int) (elm: 'a) (xs: 'a catlist) : 'a catlist = failwith "Not Implemented"
+    h i xs
 
-let delete (i: int) (xs: 'a catlist) : 'a catlist = failwith "Not Implemented"
+let delete (i: int) (xs: 'a catlist) : 'a catlist =
+    let rec j i' xs' =
+        match xs' with
+        | Empty -> Empty
+        | Single _ -> Empty
+        | Append (x, y) ->
+            if i' >= length (x) then
+                Append(x, j (i' - length (x)) y)
+            else
+                Append(j i' x, y)
+
+    j i xs

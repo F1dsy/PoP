@@ -17,7 +17,7 @@ let readBytes (count: int) (buffer: byte []) (fs: FileStream) : int =
 let writeBytes (count: int) (buffer: byte []) (fs: FileStream) : unit =
     printfn "Writing %d bytes to filestream" (Array.length buffer)
     printfn "CanWrite: %A" fs.CanWrite
-    fs.Write(buffer, 0, count)
+    fs.Write buffer
     fs.Flush()
 // fs.Write buffer
 // Replace with a proper implementation
@@ -26,7 +26,7 @@ let writeBytes (count: int) (buffer: byte []) (fs: FileStream) : unit =
 // RECOMMENDED BUT OPTIONAL:
 //     Implement this function if you want to
 //     If you remove it, remember to remove it from CatStreaming.fsi as well
-let readAndWriteBytes (buffersize: int) (buffer: byte []) (ifs: FileStream) (ofs: FileStream) =
+let readAndWriteBytes (buffersize: int) (buffer: byte []) (ifs: FileStream) (ofs: FileStream) : int =
     let out = readBytes buffersize buffer ifs
     printfn "%A" buffer
     writeBytes buffersize buffer ofs
@@ -119,26 +119,16 @@ let catWithBufferSize (buffersize: int) (filenames: string []) : int =
                     let mutable sll = 32
 
                     while sll = buffersize do
-                        sll <- readAndWriteBytes buffersize (Array.zeroCreate buffersize) stream.Value outstream.Value)
+                        sll <-
+                            readAndWriteBytes
+                                buffersize
+                                (Array.init (buffersize) (fun _ -> 0uy))
+                                stream.Value
+                                outstream.Value)
                 streams
             |> ignore
 
             0
-
-
-
-
-// let inputStreams = openFilesRead (Array.toList filenames)
-// let inputFileStream = openFileWrite filenames[0]
-
-// for stream in inputStreams do
-//     if stream.IsSome then
-//         readBytes buffersize [||] stream.Value
-//     else
-//         return
-
-
-// readAndWriteBytes buffersize [] inputFileStream outputFileStream
 // Replace with a proper implementation
 
 // REQUIRED: Your implementation *must* include this function

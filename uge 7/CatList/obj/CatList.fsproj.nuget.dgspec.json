@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj": {}
+    "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatList\\CatList.fsproj": {}
   },
   "projects": {
-    "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj": {
+    "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatList\\CatList.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj",
-        "projectName": "CatStreaming",
-        "projectPath": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj",
+        "projectUniqueName": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatList\\CatList.fsproj",
+        "projectName": "CatList",
+        "projectPath": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatList\\CatList.fsproj",
         "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\obj\\",
+        "outputPath": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatList\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BC9h45hAfoRrPFU+i1nIW6GEw87Hfv2JJUaYq2xLOpwIN+YvVyvuMahyypRuVa4KW9dtX/9NYd3BbrmzqS9C2w==",
+  "dgSpecHash": "RW1bw7l6iDA7DX+yGcWA5rCwmkN2KmXNSmxFSSJPdcz8DV9XKUQqOu4A2qbkNFyj/PCBlzGm+2Qzc9JOwKwkCQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj",
+  "projectFilePath": "c:\\Users\\Alex\\Documents\\University\\PoP\\uge 7\\CatStreaming\\CatStreaming.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alex\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
   ],
