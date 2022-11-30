@@ -1,0 +1,8 @@
+Jeg har testet mine programmr ved at bruge filerne: file1.txt file2.txt og til sidst output.txt
+
+I mine testfiler har jeg brugt autogenereret Lorem ipsum
+
+Jeg har kørt programmet ved: dotnet run testFiles/file1.txt testFiles/file2.txt testFiles/output.txt
+
+Bufferstørrelsen har jeg sat på 32
+
