@@ -53,12 +53,9 @@ let main _ =
 
         compare test1 (test2 - 1)
 
-
-
     printfn "TestFillUpQueue passed:   %A" testFillUpQueue
     printfn "TestEmptyQueue passed:    %A" testEmptyQueue
     printfn "TestQueueToString passed: %A" testQueueToString
     printfn "TestIsEmpty passed:       %A" testIsEmpty
     printfn "TestLength passed:        %A" testLength
-
     0
