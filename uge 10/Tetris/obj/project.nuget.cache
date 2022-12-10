@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "LI7CLgstzOg4hboot03ng6yUst501lNtCN2PUeWIHO2ty9KqdytqU4lp98xaVDMaxY4rRcpicJO+knn9epL/VQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Alex\\Documents\\University\\PoP\\uge 10\\Tetris\\Tetris.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alex\\.nuget\\packages\\diku.canvas\\1.0.1\\diku.canvas.1.0.1.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\stbimagesharp\\2.27.11\\stbimagesharp.2.27.11.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\stbimagewritesharp\\1.16.7\\stbimagewritesharp.1.16.7.nupkg.sha512"
+  ],
+  "logs": []
+}
