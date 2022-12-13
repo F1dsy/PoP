@@ -35,12 +35,27 @@ let draw (w: int) (h: int) (s: state) =
 
     C
 
-let react (s: state, k: key) : state option =
+let react (s: state) (k: key) : state option =
     match getKey k with
-    | DownArrow -> ()
+    | DownArrow ->
+        let piece = s.take ()
+
+        if piece.IsNone then
+            ()
+        else
+            let p = piece.Value
+            p.offset <- (3, 3)
+            s.put p |> ignore
     | LeftArrow -> ()
     | RightArrow -> ()
-    | Space -> ()
+    | Space ->
+        let piece = s.take ()
+
+        if piece.IsNone then
+            ()
+        else
+            piece.Value.rotateRight ()
+            s.put piece.Value |> ignore
     | _ -> ()
 
 
@@ -48,8 +63,10 @@ let react (s: state, k: key) : state option =
 
     Some s
 
-let b = board (10, 20)
+let b: state = board (10, 20)
 b.newPiece () |> ignore
 let C = draw 300 600 b
 
-show C "testing"
+// show C "testing"
+
+runApp "" 300 600 draw react b

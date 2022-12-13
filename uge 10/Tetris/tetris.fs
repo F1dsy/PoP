@@ -19,9 +19,8 @@ type tetromino(a: bool [,], c: Color, o: position) =
 
     member this.col = _color
 
-    member this.offset
-        with get () = _offset
-        and set (off) = _offset <- off
+    member this.offset = _offset
+    // and set (off: position) = (_offset <- off)
 
     member this.image = _shape
     member this.clone() = tetromino (_shape, _color, _offset)
@@ -30,19 +29,28 @@ type tetromino(a: bool [,], c: Color, o: position) =
 
     member this.rotateRight() =
         let transposed = (Array2D.init this.height this.width (fun x y -> _shape[y, x]))
-        // let reversed = Array2D.
-        _shape <- transposed
+
+        let reverse (i: bool [,]) : bool [,] =
+            let reversed: bool [,] =
+                Array2D.init this.height this.width (fun x y -> i[i.GetLength(0) - 1 - x, i.GetLength(1) - 1 - y])
+
+            reversed
+
+        _shape <- (reverse transposed)
 
 
 
     override this.ToString() = "tetris"
 
-
 type z(mirrored: bool, o: position) =
     inherit tetromino
         (
-            array2D [ [ false; true; true ]
-                      [ true; true; false ] ],
+            (if mirrored then
+                 array2D [ [ true; true; false ]
+                           [ false; true; true ] ]
+             else
+                 array2D [ [ false; true; true ]
+                           [ true; true; false ] ]),
             (if mirrored then Red else Green),
             o
         )
@@ -50,8 +58,12 @@ type z(mirrored: bool, o: position) =
 type l(mirrored: bool, o: position) =
     inherit tetromino
         (
-            array2D [ [ true; true; true ]
-                      [ true; false; false ] ],
+            (if mirrored then
+                 array2D [ [ true; true; true ]
+                           [ false; false; true ] ]
+             else
+                 array2D [ [ true; true; true ]
+                           [ true; false; false ] ]),
             (if mirrored then Blue else Orange),
             o
         )
@@ -79,7 +91,7 @@ type t(o: position) =
 
 type board(w: int, h: int) =
     let _board: Color option [,] = Array2D.create w h None
-    let _activePiece: tetromino option = None
+    let mutable _activePiece: tetromino option = Some(t ((3, 0)))
 
     member this.board = _board
     member this.width = w
@@ -98,6 +110,7 @@ type board(w: int, h: int) =
         piece.offset <- (rnd.Next(w) - piece.width, 0)
 
         if (this.put piece) then
+            _activePiece <- Some piece
             Some piece
         else
             None
@@ -125,6 +138,12 @@ type board(w: int, h: int) =
 
             true
 
-    member this.take() = _activePiece
+    member this.take() =
+        if _activePiece.IsNone then
+            None
+        else
+            let (x, y) = _activePiece.Value.offset
+            Array2D.iteri (fun w h b -> if b then _board[x + w, y + h] <- None) _activePiece.Value.image
+            _activePiece
 
     override this.ToString() = "tetris"
