@@ -36,18 +36,32 @@ let draw (w: int) (h: int) (s: state) =
     C
 
 let react (s: state) (k: key) : state option =
-    match getKey k with
-    | DownArrow ->
+
+    let moveWithOffset (xoff, yoff) : unit =
         let piece = s.take ()
+        ()
 
         if piece.IsNone then
             ()
         else
-            let p = piece.Value
-            p.offset <- (3, 3)
-            s.put p |> ignore
-    | LeftArrow -> ()
-    | RightArrow -> ()
+            let (x, y) = piece.Value.offset
+            let mutable _xoff = xoff
+
+            if (x + xoff < 0 || x + xoff >= s.width) then
+                _xoff <- 0
+
+            let newp = tetromino (piece.Value.image, piece.Value.col, (x + _xoff, y + yoff))
+
+            if s.put newp then
+                ()
+            else
+                s.put piece.Value |> ignore
+                s.newPiece () |> ignore
+
+    match getKey k with
+    | DownArrow -> moveWithOffset (0, 1)
+    | LeftArrow -> moveWithOffset (-1, 1)
+    | RightArrow -> moveWithOffset (1, 1)
     | Space ->
         let piece = s.take ()
 
@@ -69,4 +83,7 @@ let C = draw 300 600 b
 
 // show C "testing"
 
+runApp "" 300 600 draw react b
+runApp "" 300 600 draw react b
+runApp "" 300 600 draw react b
 runApp "" 300 600 draw react b

@@ -106,8 +106,17 @@ type board(w: int, h: int) =
             else
                 false
 
-        let piece = z (isMirrored, (0, 0))
-        piece.offset <- (rnd.Next(w) - piece.width, 0)
+
+        let xoff = rnd.Next(6) + 1
+
+        let piece: tetromino =
+            match rnd.Next(4) with
+            | 0 -> z (isMirrored, (xoff, 0))
+            | 1 -> l (isMirrored, (xoff, 0))
+            | 2 -> square ((xoff, 0))
+            | 3 -> straight ((xoff, 0))
+            | 4 -> t ((xoff, 0))
+
 
         if (this.put piece) then
             _activePiece <- Some piece
@@ -119,31 +128,43 @@ type board(w: int, h: int) =
         let (x, y) = t.offset
         let mutable canPut = true
 
-        Array2D.iteri
-            (fun w h b ->
-                if _board[x + w, y + h].IsSome then
-                    canPut <- false
-
-                )
-            t.image
-
-        if canPut = false then
+        if (0 > x
+            || this.width <= x
+            || this.height <= y + t.height - 1) then
+            canPut <- false
             false
         else
+
             Array2D.iteri
                 (fun w h b ->
-                    if b then
-                        _board[x + w, y + h] <- Some t.col)
+
+                    if _board[x + w, y + h].IsSome && b then
+                        canPut <- false
+
+                    )
                 t.image
 
-            true
+            if canPut = false then
+                false
+            else
+                Array2D.iteri
+                    (fun w h b ->
+                        if b then
+                            _board[x + w, y + h] <- Some t.col)
+                    t.image
+
+                _activePiece <- Some t
+                true
 
     member this.take() =
-        if _activePiece.IsNone then
+        let activePiece = _activePiece
+
+        if activePiece.IsNone then
             None
         else
-            let (x, y) = _activePiece.Value.offset
-            Array2D.iteri (fun w h b -> if b then _board[x + w, y + h] <- None) _activePiece.Value.image
-            _activePiece
+            let (x, y) = activePiece.Value.offset
+            Array2D.iteri (fun w h b -> if b then _board[x + w, y + h] <- None) activePiece.Value.image
+            _activePiece <- None
+            activePiece
 
     override this.ToString() = "tetris"
