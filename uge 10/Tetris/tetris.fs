@@ -1,6 +1,4 @@
-//test hej alex
 module Tetris
-
 type position = int * int
 
 type Color =
@@ -98,32 +96,32 @@ type board(w: int, h: int) =
     member this.width = w
     member this.height = h
 
-    member this.newPiece() : tetromino option =
-        let rnd = System.Random()
+        member this.newPiece() : tetromino option =
+            let rnd = System.Random()
 
-        let isMirrored =
-            if rnd.NextDouble() > 0.5 then
-                true
+            let isMirrored =
+                if rnd.NextDouble() > 0.5 then
+                    true
+                else
+                    false
+
+
+            let xoff = rnd.Next(6) + 1
+
+            let piece: tetromino =
+                match rnd.Next(4) with
+                | 0 -> z (isMirrored, (xoff, 0))
+                | 1 -> l (isMirrored, (xoff, 0))
+                | 2 -> square ((xoff, 0))
+                | 3 -> straight ((xoff, 0))
+                | 4 -> t ((xoff, 0))
+
+
+            if (this.put piece) then
+                _activePiece <- Some piece
+                Some piece
             else
-                false
-
-
-        let xoff = rnd.Next(6) + 1
-
-        let piece: tetromino =
-            match rnd.Next(4) with
-            | 0 -> z (isMirrored, (xoff, 0))
-            | 1 -> l (isMirrored, (xoff, 0))
-            | 2 -> square ((xoff, 0))
-            | 3 -> straight ((xoff, 0))
-            | 4 -> t ((xoff, 0))
-
-
-        if (this.put piece) then
-            _activePiece <- Some piece
-            Some piece
-        else
-            None
+                None
 
     member this.put(t: tetromino) =
         let (x, y) = t.offset
