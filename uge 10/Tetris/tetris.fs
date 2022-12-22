@@ -18,29 +18,19 @@ type tetromino(a: bool [,], c: Color, o: position) =
     let mutable _offset = o
 
     member this.col = _color
-
     member this.offset = _offset
-    // and set (off: position) = (_offset <- off)
-
     member this.image = _shape
     member this.clone() = tetromino (_shape, _color, _offset)
     member this.width = _shape.GetLength(0)
     member this.height = _shape.GetLength(1)
 
     member this.rotateRight() =
-        let transposed = (Array2D.init this.height this.width (fun x y -> _shape[y, x]))
-
-        let reverse (i: bool [,]) : bool [,] =
-            let reversed: bool [,] =
-                Array2D.init this.height this.width (fun x y -> i[i.GetLength(0) - 1 - x, i.GetLength(1) - 1 - y])
-
-            reversed
-
-        _shape <- (reverse transposed)
+        _shape <- Array2D.init this.height this.width (fun x y -> _shape[y, this.height - 1 - x])
 
 
 
-    override this.ToString() = "tetris"
+
+    override this.ToString() = _shape.ToString()
 
 type z(mirrored: bool, o: position) =
     inherit tetromino
@@ -115,7 +105,7 @@ type board(w: int, h: int) =
             | 1 -> l (isMirrored, (xoff, 0))
             | 2 -> square ((xoff, 0))
             | 3 -> straight ((xoff, 0))
-            | 4 -> t ((xoff, 0))
+            | _ -> t ((xoff, 0))
 
 
         if (this.put piece) then
@@ -128,9 +118,8 @@ type board(w: int, h: int) =
         let (x, y) = t.offset
         let mutable canPut = true
 
-        if (0 > x
-            || this.width <= x
-            || this.height <= y + t.height - 1) then
+        // Check if piece has reached bottom
+        if (this.height <= y + t.height - 1) then
             canPut <- false
             false
         else
@@ -167,4 +156,4 @@ type board(w: int, h: int) =
             _activePiece <- None
             activePiece
 
-    override this.ToString() = "tetris"
+    override this.ToString() = _board.ToString()
