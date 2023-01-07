@@ -137,3 +137,4 @@ let tests () =
     ()
 
 tests ()
+runGame ()
