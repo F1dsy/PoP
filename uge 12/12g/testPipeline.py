@@ -10,6 +10,7 @@ class Tests(unittest.TestCase):
         num = 43
         numPlusOne = addOne.apply(num)
         self.assertEqual(numPlusOne, 44)
+        print(addOne.description())
 
     def test_Repeater(self):
 
@@ -18,6 +19,7 @@ class Tests(unittest.TestCase):
         repeatFour = pipeline.Repeater(4)
         numList = repeatFour.apply(num)
         self.assertListEqual(numList, [43, 43, 43, 43])
+        print(repeatFour.description())
 
         repeatNeg = pipeline.Repeater(-2)
         empty = repeatNeg.apply(num)
@@ -27,11 +29,39 @@ class Tests(unittest.TestCase):
         summer = pipeline.SumNum()
         res = summer.apply([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         self.assertEqual(res, 55)
+        print(summer.description())
 
     def test_ProductNum(self):
         summer = pipeline.ProductSum()
         res = summer.apply([1, 2, 3, 4, 5])
         self.assertEqual(res, 120)
+        print(summer.description())
+
+    def test_Map(self):
+        step = pipeline.AddConst(4)
+        map = pipeline.Map(step)
+        input = [1, 2, 3, 4]
+        mapped = map.apply(input)
+        self.assertListEqual(mapped, [5, 6, 7, 8])
+        print(map.description())
+
+    def test_Pipeline(self):
+        pipesteps = [
+            pipeline.AddConst(4),
+            pipeline.Repeater(5),
+            pipeline.SumNum()
+        ]
+        pipe = pipeline.Pipeline(pipesteps)
+        res = pipe.apply(3)
+        self.assertEqual(res, 35)
+        print(pipe.description())
+
+    def test_critter(self):
+        cRead = pipeline.CsvReader()
+        stats = pipeline.CritterStats()
+        data = cRead.apply("critters.csv")
+        res = stats.apply(data)
+        print(res)
 
 
 if __name__ == "__main__":
