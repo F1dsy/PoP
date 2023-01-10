@@ -59,8 +59,17 @@ class Tests(unittest.TestCase):
     def test_critter(self):
         cRead = pipeline.CsvReader()
         stats = pipeline.CritterStats()
+        chart = pipeline.ShowAsciiBarChart()
         data = cRead.apply("critters.csv")
-        res = stats.apply(data)
+        stat = stats.apply(data)
+        res = chart.apply(stat)
+        print(res)
+
+    def test_polynomial(self):
+        inp = [0, 1, 2, 3, 4, 5]
+        poly = pipeline.Polynomial([2, 0, 1])
+        map = pipeline.Map(poly)
+        res = map.apply(inp)
         print(res)
 
 

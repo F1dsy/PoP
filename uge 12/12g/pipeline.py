@@ -1,6 +1,7 @@
 from abc import abstractmethod, ABC
 import operator
 import csv
+import math
 
 
 class Step(ABC):
@@ -141,3 +142,60 @@ class CritterStats(Step):
 
     def description(self) -> str:
         return super().description()
+
+
+class ShowAsciiBarChart(Step):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def apply(self, critter_stats: dict):
+        result = ""
+        for key in critter_stats:
+            result = result + f'\n{key}: {critter_stats[key] * "*"}'
+        return result
+
+    def description(self) -> str:
+        return super().description()
+
+
+class Exponent(Step):
+
+    def __init__(self, exp: float) -> None:
+        self.exp = exp
+        super().__init__()
+
+    def apply(self, inp):
+        return inp ** self.exp
+
+    def description(self) -> str:
+        return f'Do input^{self.exp}'
+
+
+class Logarithm(Step):
+
+    def __init__(self, base: float) -> None:
+        self.base = base
+        super().__init__()
+
+    def apply(self, inp):
+        return math.log(inp, self.base)
+
+    def description(self) -> str:
+        return f'Find log with base {self.base}'
+
+
+class Polynomial(Step):
+    def __init__(self, para: list[float]) -> None:
+        para.reverse()
+        self.para = para
+        super().__init__()
+
+    def apply(self, x):
+
+        sum = 0
+        for i, p in enumerate(self.para):
+            sum = sum + p*(x**i)
+        return sum
+
+    def description(self) -> str:
+        return f'Find log with base {self.base}'
