@@ -38,7 +38,7 @@ class Repeater(Step):
         return self.n * [inp]
 
     def description(self) -> str:
-        return f'Repeat {self.n} times, as a list'
+        return f'Repeat {self.n if self.n > 0 else 0 } times, as a list'
 
 
 class GeneralSum(Step):
@@ -86,7 +86,7 @@ class Map(Step):
         return res
 
     def description(self) -> str:
-        return f' {self.step.description()} to each element'
+        return f'{self.step.description()} to each element'
 
 
 class Pipeline(Step):
@@ -123,7 +123,7 @@ class CsvReader(Step):
             return result
 
     def description(self) -> str:
-        return super().description()
+        return "Return CSV data"
 
 
 class CritterStats(Step):
@@ -141,7 +141,7 @@ class CritterStats(Step):
         return stats
 
     def description(self) -> str:
-        return super().description()
+        return "Make stats on critters"
 
 
 class ShowAsciiBarChart(Step):
@@ -155,7 +155,7 @@ class ShowAsciiBarChart(Step):
         return result
 
     def description(self) -> str:
-        return super().description()
+        return "Show Ascii Bar Chart"
 
 
 class Exponent(Step):
@@ -198,4 +198,4 @@ class Polynomial(Step):
         return sum
 
     def description(self) -> str:
-        return f'Find log with base {self.base}'
+        return f'Calculate polynomial with parameters {self.para}'
